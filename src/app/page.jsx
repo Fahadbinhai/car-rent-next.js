@@ -1,17 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import Banner from "./components/Banner";
 
 export default function Home() {
   return (
     <div>
-      hello world
-
-    <p>I am from layout</p>
-
-    <button className="btn btn-primary" >hello</button>
-    <Link className="btn btn-primary" href='/service'> services</Link>
-
-      
+      <Banner></Banner>
     </div>
   );
 }
