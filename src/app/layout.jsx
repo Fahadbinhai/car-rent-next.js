@@ -29,8 +29,8 @@ export default function RootLayout({ children }) {
         className={`${roboto.variable} antialiased`}
       >
 
-        <div className="">
-          <header>
+        <div>
+          <header className="sticky top-0 z-50">
             <Navbar></Navbar>
           </header>
 
