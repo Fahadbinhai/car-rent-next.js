@@ -5,6 +5,9 @@ import Swal from 'sweetalert2';
 const AddCar = () => {
 
     const [uploadingImg, setUploadingImg] = useState(null)
+    const [fuel, setFuel] = useState('')
+    const [gear, setGear] = useState('')
+    console.log(fuel)
 
     // uploading photo
     const handleUploadImage = async () => {
@@ -29,7 +32,7 @@ const AddCar = () => {
         e.preventDefault()
         // const imgUrl = await url
         const imgUrl = await handleUploadImage()
-        console.log(imgUrl)
+        // console.log(imgUrl)
 
         if (!imgUrl) {
             Swal.fire({
@@ -46,10 +49,20 @@ const AddCar = () => {
         const carName = form.car.value;
         const carType = form.carType.value;
         const registration = form.registration.value;
+        const fuelType = fuel;
+        const gearType = gear;
+        const totalSits = form.capacity.value;
+        const perDayPrice = form.price.value;
+        const carColor = form.color.value;
+        const carImage = imgUrl;
 
-        console.log(carName, carType, registration)
 
+        const CarDetails = {
+            carName, carType, registration, fuelType, gearType, totalSits, perDayPrice, carColor, carImage
+        }
 
+        console.log(CarDetails);
+        form.reset();
     }
 
     return (
@@ -75,6 +88,7 @@ const AddCar = () => {
                         </div>
 
                         {/* car type */}
+                        {/* future e select diye change kora hobe */}
                         <div>
                             <label className="block font-medium mb-1">2.Car Type</label>
                             <input
@@ -101,32 +115,53 @@ const AddCar = () => {
                         {/* Fuel Type */}
                         <div>
                             <label className="block font-medium mb-1">4.Fuel Type</label>
-                            <input
+                            {/* <input
                                 type="text"
                                 name="fuel"
                                 placeholder="e.g. Petrol"
                                 className="input input-bordered w-full"
                                 required
-                            />
+                            /> */}
+                            <select
+                                value={fuel}
+                                className="input input-bordered w-full"
+                                onChange={(e) => setFuel(e.target.value)}
+                            >
+
+                                <option className='text-center' value="" disabled >-----select one-----</option>
+                                <option value="Petrol">Petrol</option>
+                                <option value="octane">Octane</option>
+                                <option value="Diesel">Diesel</option>
+                                <option value="Electric">Electric</option>
+                            </select>
                         </div>
 
                         {/* Transmission Type */}
                         <div>
                             <label className="block font-medium mb-1">5.Transmission Type</label>
-                            <input
+                            {/* <input
                                 type="text"
                                 name="gear"
                                 placeholder="Manual/Auto"
                                 className="input input-bordered w-full"
                                 required
-                            />
+                            /> */}
+                            <select className="input input-bordered w-full"
+                                value={gear}
+                                onChange={(e) => setGear(e.target.value)}
+                            >
+                                <option className='text-center' value='' disabled >-----select one-----</option>
+                                <option value="Auto">Auto</option>
+                                <option value="Manual">Manual</option>
+
+                            </select>
                         </div>
 
                         {/* capacity  */}
                         <div>
                             <label className="block font-medium mb-1">6.Seating Capacity</label>
                             <input
-                                type="text"
+                                type="number"
                                 name="capacity"
                                 className="input input-bordered w-full"
                                 required
@@ -137,7 +172,7 @@ const AddCar = () => {
                         <div>
                             <label className="block font-medium mb-1">7.Rental Price per Day</label>
                             <input
-                                type="text"
+                                type="number"
                                 name="price"
                                 className="input input-bordered w-full"
                                 required
