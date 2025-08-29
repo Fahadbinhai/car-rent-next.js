@@ -1,4 +1,5 @@
 'use client'
+import useAxiosInstance from '@/customHooks/axiosHooks/useAxiosInstance';
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 
@@ -7,7 +8,7 @@ const AddCar = () => {
     const [uploadingImg, setUploadingImg] = useState(null)
     const [fuel, setFuel] = useState('')
     const [gear, setGear] = useState('')
-    console.log(fuel)
+    const axiosInstance = useAxiosInstance()
 
     // uploading photo
     const handleUploadImage = async () => {
@@ -57,17 +58,44 @@ const AddCar = () => {
         const carImage = imgUrl;
 
 
-        const CarDetails = {
+        const carDetails = {
             carName, carType, registration, fuelType, gearType, totalSits, perDayPrice, carColor, carImage
         }
 
-        console.log(CarDetails);
+        try {
+            const response = await axiosInstance.post('/allCars', carDetails)
+
+            if (response.data.insertedId) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Uploaded",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+
+        }
+        catch (err) {
+            if (err) {
+                Swal.fire({
+                    title: "Something going wrong!",
+                    icon: "warning",
+                    draggable: true
+                });
+            }
+        }
+
+
+        console.log(carDetails);
+        setFuel('');
+        setGear('');
         form.reset();
     }
 
     return (
         <div>
-            <section>
+            <section className='w-[75%] mx-auto mt-14 px-20 py-10 bg-[#F5F5F5]'>
                 <h3 className='text-4xl font-bold text-center mt-10'>Add car for Rent</h3>
 
                 {/* form for data from the user. currently not adding it in the nav bar. It's only accessible by url box */}
