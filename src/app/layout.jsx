@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import TanstackQuery from "@/customHooks/tanstackQueryHook/TanstackQuery";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -23,13 +24,17 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+  // query client 
+
+
+
+
   return (
     <html lang="en" data-theme="light">
-      <body
-        className={`${roboto.variable} antialiased`}
-      >
+      <body className={`${roboto.variable} antialiased`}>
 
-        <div>
+        <TanstackQuery>
           <header className="sticky top-0 z-50">
             <Navbar></Navbar>
           </header>
@@ -39,9 +44,11 @@ export default function RootLayout({ children }) {
           </main>
 
           <footer>
-              {/* <p>footer</p> */}
+            {/* <p>footer</p> */}
           </footer>
-        </div>
+
+        </TanstackQuery>
+
 
 
       </body>

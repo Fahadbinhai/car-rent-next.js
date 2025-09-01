@@ -3,6 +3,7 @@ import Link from "next/link";
 import Banner from "./components/Banner";
 import Information from "./components/Information";
 import Support from "./components/Support";
+import DisplayCar from "./components/DisplayCar";
 
 export default function Home() {
   return (
@@ -12,8 +13,10 @@ export default function Home() {
         <Information></Information>
       </div>
       <div className="mx-17">
-
         <Support></Support>
+      </div>
+      <div className="mx-17">
+        <DisplayCar></DisplayCar>
       </div>
     </div>
   );
