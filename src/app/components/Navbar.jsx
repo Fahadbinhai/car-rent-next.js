@@ -16,6 +16,9 @@ const Navbar = () => {
                 href='/'
                 className={pathname === '/' ? 'text-blue-700 underline font-bold' : ''}
             >Home</Link>
+            <Link href='/displayAllCar'
+                className={pathname === '/displayAllCar' ? 'text-blue-700 underline font-bold' : ''}
+            >All Cars</Link>
             <Link
                 href='/service'
                 className={pathname === '/service' ? 'text-blue-700 underline font-bold' : ''}
